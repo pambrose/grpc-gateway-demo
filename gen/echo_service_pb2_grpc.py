@@ -6,7 +6,7 @@ from grpc.framework.interfaces.face import utilities as face_utilities
 import echo_service_pb2 as echo__service__pb2
 
 
-class YourServiceStub(object):
+class EchoServiceStub(object):
 
   def __init__(self, channel):
     """Constructor.
@@ -15,13 +15,13 @@ class YourServiceStub(object):
       channel: A grpc.Channel.
     """
     self.Echo = channel.unary_unary(
-        '/echo.YourService/Echo',
+        '/echo.EchoService/Echo',
         request_serializer=echo__service__pb2.StringMessage.SerializeToString,
         response_deserializer=echo__service__pb2.StringMessage.FromString,
         )
 
 
-class YourServiceServicer(object):
+class EchoServiceServicer(object):
 
   def Echo(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -29,7 +29,7 @@ class YourServiceServicer(object):
     raise NotImplementedError('Method not implemented!')
 
 
-def add_YourServiceServicer_to_server(servicer, server):
+def add_EchoServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'Echo': grpc.unary_unary_rpc_method_handler(
           servicer.Echo,
@@ -38,5 +38,5 @@ def add_YourServiceServicer_to_server(servicer, server):
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'echo.YourService', rpc_method_handlers)
+      'echo.EchoService', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))

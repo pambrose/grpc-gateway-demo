@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='echo_service.proto',
   package='echo',
   syntax='proto3',
-  serialized_pb=_b('\n\x12\x65\x63ho_service.proto\x12\x04\x65\x63ho\x1a\x1cgoogle/api/annotations.proto\"\x1e\n\rStringMessage\x12\r\n\x05value\x18\x01 \x01(\t2h\n\x0bYourService\x12Y\n\x04\x45\x63ho\x12\x13.echo.StringMessage\x1a\x13.echo.StringMessage\"\'\x82\xd3\xe4\x93\x02!\"\x08/v1/echo:\x01*Z\x12\x12\x10/v1/echo/{value}b\x06proto3')
+  serialized_pb=_b('\n\x12\x65\x63ho_service.proto\x12\x04\x65\x63ho\x1a\x1cgoogle/api/annotations.proto\"\x1e\n\rStringMessage\x12\r\n\x05value\x18\x01 \x01(\t2h\n\x0b\x45\x63hoService\x12Y\n\x04\x45\x63ho\x12\x13.echo.StringMessage\x1a\x13.echo.StringMessage\"\'\x82\xd3\xe4\x93\x02!\"\x08/v1/echo:\x01*Z\x12\x12\x10/v1/echo/{value}b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -78,7 +78,7 @@ try:
   from grpc.beta import interfaces as beta_interfaces
 
 
-  class YourServiceStub(object):
+  class EchoServiceStub(object):
 
     def __init__(self, channel):
       """Constructor.
@@ -87,13 +87,13 @@ try:
         channel: A grpc.Channel.
       """
       self.Echo = channel.unary_unary(
-          '/echo.YourService/Echo',
+          '/echo.EchoService/Echo',
           request_serializer=StringMessage.SerializeToString,
           response_deserializer=StringMessage.FromString,
           )
 
 
-  class YourServiceServicer(object):
+  class EchoServiceServicer(object):
 
     def Echo(self, request, context):
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -101,7 +101,7 @@ try:
       raise NotImplementedError('Method not implemented!')
 
 
-  def add_YourServiceServicer_to_server(servicer, server):
+  def add_EchoServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
         'Echo': grpc.unary_unary_rpc_method_handler(
             servicer.Echo,
@@ -110,11 +110,11 @@ try:
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        'echo.YourService', rpc_method_handlers)
+        'echo.EchoService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
-  class BetaYourServiceServicer(object):
+  class BetaEchoServiceServicer(object):
     """The Beta API is deprecated for 0.15.0 and later.
 
     It is recommended to use the GA API (classes and functions in this
@@ -124,7 +124,7 @@ try:
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
-  class BetaYourServiceStub(object):
+  class BetaEchoServiceStub(object):
     """The Beta API is deprecated for 0.15.0 and later.
 
     It is recommended to use the GA API (classes and functions in this
@@ -135,42 +135,42 @@ try:
     Echo.future = None
 
 
-  def beta_create_YourService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
+  def beta_create_EchoService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
     """The Beta API is deprecated for 0.15.0 and later.
 
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This function was
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_deserializers = {
-      ('echo.YourService', 'Echo'): StringMessage.FromString,
+      ('echo.EchoService', 'Echo'): StringMessage.FromString,
     }
     response_serializers = {
-      ('echo.YourService', 'Echo'): StringMessage.SerializeToString,
+      ('echo.EchoService', 'Echo'): StringMessage.SerializeToString,
     }
     method_implementations = {
-      ('echo.YourService', 'Echo'): face_utilities.unary_unary_inline(servicer.Echo),
+      ('echo.EchoService', 'Echo'): face_utilities.unary_unary_inline(servicer.Echo),
     }
     server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
     return beta_implementations.server(method_implementations, options=server_options)
 
 
-  def beta_create_YourService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
+  def beta_create_EchoService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
     """The Beta API is deprecated for 0.15.0 and later.
 
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This function was
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_serializers = {
-      ('echo.YourService', 'Echo'): StringMessage.SerializeToString,
+      ('echo.EchoService', 'Echo'): StringMessage.SerializeToString,
     }
     response_deserializers = {
-      ('echo.YourService', 'Echo'): StringMessage.FromString,
+      ('echo.EchoService', 'Echo'): StringMessage.FromString,
     }
     cardinalities = {
       'Echo': cardinality.Cardinality.UNARY_UNARY,
     }
     stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-    return beta_implementations.dynamic_stub(channel, 'echo.YourService', cardinalities, options=stub_options)
+    return beta_implementations.dynamic_stub(channel, 'echo.EchoService', cardinalities, options=stub_options)
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

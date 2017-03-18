@@ -61,7 +61,7 @@ func serveSwagger(w http.ResponseWriter, r *http.Request) {
 func newGateway(ctx context.Context, opts ...runtime.ServeMuxOption) (http.Handler, error) {
 	mux := runtime.NewServeMux(opts...)
 	dialOpts := []grpc.DialOption{grpc.WithInsecure()}
-	err := ex.RegisterYourServiceHandlerFromEndpoint(ctx, mux, *echoEndpoint, dialOpts)
+	err := ex.RegisterEchoServiceHandlerFromEndpoint(ctx, mux, *echoEndpoint, dialOpts)
 	if err != nil {
 		return nil, err
 	}

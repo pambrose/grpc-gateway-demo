@@ -1,13 +1,15 @@
-from gen.echo_service_pb2 import  StringMessage
-from gen.echo_service_pb2 import EchoServiceServicer
-from gen.echo_service_pb2 import add_EchoServiceServicer_to_server
+import logging
+import time
+from concurrent import futures
+
+import grpc
 from grpc_support import GenericServer
 from utils import current_time_millis
 from utils import setup_logging
-import logging
-import time
-import grpc
-from concurrent import futures
+
+from pb.echo_service_pb2 import EchoServiceServicer
+from pb.echo_service_pb2 import StringMessage
+from pb.echo_service_pb2 import add_EchoServiceServicer_to_server
 
 logger = logging.getLogger(__name__)
 

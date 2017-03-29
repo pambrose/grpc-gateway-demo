@@ -7,9 +7,9 @@ from grpc_support import GenericServer
 from utils import current_time_millis
 from utils import setup_logging
 
-from pb.echo_service_pb2 import EchoServiceServicer
-from pb.echo_service_pb2 import StringMessage
-from pb.echo_service_pb2 import add_EchoServiceServicer_to_server
+from proto.echo_service_pb2 import EchoServiceServicer
+from proto.echo_service_pb2 import StringMessage
+from proto.echo_service_pb2 import add_EchoServiceServicer_to_server
 
 logger = logging.getLogger(__name__)
 

@@ -9,7 +9,7 @@ import (
     "github.com/grpc-ecosystem/grpc-gateway/runtime"
     "google.golang.org/grpc"
 
-    ex "./pb"
+    pb "./proto"
     "strings"
     "path"
 )
@@ -60,7 +60,7 @@ func serveSwagger(w http.ResponseWriter, r *http.Request) {
 func newGateway(ctx context.Context, opts ...runtime.ServeMuxOption) (http.Handler, error) {
     mux := runtime.NewServeMux(opts...)
     dialOpts := []grpc.DialOption{grpc.WithInsecure()}
-    err := ex.RegisterEchoServiceHandlerFromEndpoint(ctx, mux, *echoEndpoint, dialOpts)
+    err := pb.RegisterEchoServiceHandlerFromEndpoint(ctx, mux, *echoEndpoint, dialOpts)
     if err != nil {
         return nil, err
     }

@@ -9,14 +9,14 @@ default: all
 all: go-stubs py-stubs go-proxy swagger
 
 go-stubs:
-	protoc -I/usr/local/include -I. -I${GOSRC} -I${GOOGLEAPIS} --go_out=,plugins=grpc:. ./pb/echo_service.proto
+	protoc -I/usr/local/include -I. -I${GOSRC} -I${GOOGLEAPIS} --go_out=,plugins=grpc:. ./proto/echo_service.proto
 
 go-proxy:
-	protoc -I/usr/local/include -I. -I${GOSRC} -I${GOOGLEAPIS} --grpc-gateway_out=logtostderr=true:. ./pb/echo_service.proto
+	protoc -I/usr/local/include -I. -I${GOSRC} -I${GOOGLEAPIS} --grpc-gateway_out=logtostderr=true:. ./proto/echo_service.proto
 
 py-stubs:
-	python -m grpc_tools.protoc -I. -I${GOOGLEAPIS} -I${PBAPIS} --python_out=. --grpc_python_out=. ./pb/echo_service.proto
+	python -m grpc_tools.protoc -I. -I${GOOGLEAPIS} -I${PBAPIS} --python_out=. --grpc_python_out=. ./proto/echo_service.proto
 
 swagger:
-	cd pb; protoc -I/usr/local/include -I. -I${GOSRC} -I${GOOGLEAPIS} --swagger_out=logtostderr=true:../swagger ./echo_service.proto
+	cd proto; protoc -I/usr/local/include -I. -I${GOSRC} -I${GOOGLEAPIS} --swagger_out=logtostderr=true:../swagger ./echo_service.proto
 
